@@ -9,8 +9,6 @@ RF03 - O sistema deve permitir login com e-mail e senha cadastrados.
 
 RF04 - O sistema deve permitir recuperação de senha via e-mail.
 
-RF05 - O sistema deve possibilitar autenticação em dois fatores (2FA).
-
 2. Perfil do Usuário
 
 RF06 - O sistema deve permitir que o usuário edite dados pessoais.

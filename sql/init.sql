@@ -1,1 +1,11 @@
--- ...existing code...
+
+CREATE TABLE IF NOT EXISTS usuarios (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	email VARCHAR(100) NOT NULL UNIQUE,
+	senha VARCHAR(255) NOT NULL,
+	data_nascimento DATE NOT NULL,
+	data_cadastro DATETIME NOT NULL,
+	reset_token VARCHAR(255) DEFAULT NULL,
+	reset_token_expira DATETIME DEFAULT NULL
+);
