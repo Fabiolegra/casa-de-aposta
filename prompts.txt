@@ -18,3 +18,23 @@ Analise os requisitos funcionais do sistema de apostas esportivas e crie a arqui
 - Documente no README.md como rodar o projeto localmente (PHP + MySQL via XAMPP/Laragon ou Docker) e o prompt utilizado.
 
 2- 
+Implemente o módulo de Cadastro e Autenticação de usuários em um sistema PHP utilizando padrão MVC.
+
+Requisitos funcionais:
+- RF01: Permitir cadastro de novos usuários com nome, e-mail, senha (hash seguro) e data de nascimento.
+- RF02: Validar idade mínima de 18 anos no cadastro.
+- RF03: Permitir login com e-mail e senha cadastrados.
+- RF04: Permitir recuperação de senha via e-mail.
+
+Especificações:
+- Utilize PDO para conexão segura com MySQL.
+- Senhas devem ser armazenadas com password_hash e verificadas com password_verify.
+- Se já existirem arquivos/models/controllers relacionados a "User", utilize-os; caso contrário, crie do zero.
+- Crie as seguintes partes:
+  - Model `User.php` para manipular a tabela de usuários.
+  - Controller `AuthController.php` com métodos: register, login, logout, recoverPassword.
+  - Views em `views/auth/` para formulários de registro, login e recuperação de senha.
+  - Script SQL para a tabela `usuarios` (id, nome, email, senha, data_nascimento, data_cadastro).
+- Adicione verificação da idade no backend.
+- Para recuperação de senha, crie fluxo simples que gera token de redefinição enviado por e-mail (simulação de envio).
+- Se algum arquivo necessário não existir, crie automaticamente.
