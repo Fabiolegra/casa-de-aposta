@@ -1,27 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>LegraBet - Sua Casa de Apostas</title>
-	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
-	<style>
-		.btn-anim {
-			transition: transform 0.2s, box-shadow 0.2s;
-		}
-		.btn-anim:hover {
-			transform: scale(1.05);
-			box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-		}
-	</style>
-</head>
+<?php include __DIR__ . '/views/style/head.php'; ?>
 <body class="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 min-h-screen flex flex-col">
 	<!-- Cabeçalho -->
 	<header class="fixed top-0 left-0 w-full bg-white/90 shadow z-50 flex items-center justify-between px-4 py-3">
 		<h1 class="text-2xl font-bold text-purple-700 tracking-wide">LegraBet</h1>
 		<div class="flex gap-2">
 			<a href="views/auth/login.php" class="btn-anim px-4 py-2 rounded bg-purple-600 text-white font-semibold hover:bg-purple-700">Login</a>
-			<a href="register.php" class="btn-anim px-4 py-2 rounded bg-pink-500 text-white font-semibold hover:bg-pink-600">Cadastrar</a>
+			<a href="views/auth/register.php" class="btn-anim px-4 py-2 rounded bg-pink-500 text-white font-semibold hover:bg-pink-600">Cadastrar</a>
 		</div>
 	</header>
 
@@ -32,7 +16,7 @@
 	<section class="flex-1 flex flex-col items-center justify-center text-center px-4 py-10">
 		<h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow">Aposte no seu esporte favorito!</h2>
 		<p class="text-lg md:text-xl text-white/90 mb-6">Ganhe prêmios instantâneos e aproveite as melhores odds do mercado.</p>
-		<a href="register.php" class="btn-anim px-8 py-3 rounded-full bg-yellow-400 text-purple-900 font-bold text-lg shadow-lg hover:bg-yellow-500">Comece a Apostar</a>
+		<a href="views/auth/register.php" class="btn-anim px-8 py-3 rounded-full bg-yellow-400 text-purple-900 font-bold text-lg shadow-lg hover:bg-yellow-500">Comece a Apostar</a>
 	</section>
 
 	<!-- Benefícios -->
@@ -89,14 +73,6 @@
 		</div>
 	</section>
 
-	<!-- Rodapé -->
-	<footer class="bg-white/90 text-center py-4 mt-auto shadow-inner">
-		<div class="flex flex-col md:flex-row justify-center gap-4 text-sm text-gray-700">
-			<a href="#" class="hover:underline">Política de Privacidade</a>
-			<a href="#" class="hover:underline">Termos de Uso</a>
-			<a href="#" class="hover:underline">Contato</a>
-		</div>
-		<div class="mt-2 text-xs text-gray-500">&copy; 2025 LegraBet. Todos os direitos reservados.</div>
-	</footer>
+<?php include __DIR__ . '/views/style/footer.php'; ?>
 </body>
 </html>
