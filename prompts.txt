@@ -1,0 +1,20 @@
+1 - prompt
+Prompt utilizado
+
+Analise os requisitos funcionais do sistema de apostas esportivas e crie a arquitetura do projeto em PHP utilizando o padrão MVC.
+
+- Estruture o projeto em pastas (models, views, controllers, config, public).
+- Inclua um arquivo de configuração de banco de dados (PDO + MySQL).
+- Crie um script SQL inicial com as tabelas necessárias para:
+  - usuarios (cadastro, autenticação, saldo)
+  - eventos (jogos, odds, data/hora)
+  - apostas (registro de apostas, valor, odd, status)
+  - transacoes (depósitos e saques)
+- Implemente arquivos base para cada camada:
+  - Controller genérico + exemplo de controlador para cadastro/login de usuário
+  - Modelo genérico + modelo de usuário
+  - View inicial para tela de login
+- Gere exemplos de rotas/controladores para os requisitos de cadastro e autenticação de usuários.
+- Documente no README.md como rodar o projeto localmente (PHP + MySQL via XAMPP/Laragon ou Docker) e o prompt utilizado.
+
+2- 
