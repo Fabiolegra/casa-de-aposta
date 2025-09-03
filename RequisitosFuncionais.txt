@@ -1,0 +1,73 @@
+Requisitos Funcionais - LegraBet - Site de Apostas Esportivas
+1. Cadastro e Autenticação
+
+RF01 - O sistema deve permitir o cadastro de novos usuários com dados pessoais (nome, e-mail, senha, data de nascimento).
+
+RF02 - O sistema deve validar a idade mínima de 18 anos para novos usuários.
+
+RF03 - O sistema deve permitir login com e-mail e senha cadastrados.
+
+RF04 - O sistema deve permitir recuperação de senha via e-mail.
+
+RF05 - O sistema deve possibilitar autenticação em dois fatores (2FA).
+
+2. Perfil do Usuário
+
+RF06 - O sistema deve permitir que o usuário edite dados pessoais.
+
+RF07 - O sistema deve exibir saldo disponível para apostas.
+
+RF08 - O sistema deve mostrar histórico de depósitos, saques e apostas realizadas.
+
+3. Gestão de Apostas
+
+RF09 - O sistema deve listar eventos esportivos disponíveis para apostas (futebol, basquete, etc.).
+
+RF10 - O sistema deve exibir odds (cotações) de cada evento em tempo real.
+
+RF11 - O sistema deve permitir que o usuário selecione um evento e realize apostas simples.
+
+RF12 - O sistema deve permitir múltiplas apostas (combinadas).
+
+RF13 - O sistema deve calcular automaticamente o possível retorno da aposta.
+
+RF14 - O sistema deve registrar a aposta no banco de dados com status pendente, ganha ou perdida.
+
+4. Pagamentos e Transações
+
+RF15 - O sistema deve permitir depósitos via Pix, cartão de crédito e boleto.
+
+RF16 - O sistema deve permitir saques via Pix.
+
+RF17 - O sistema deve atualizar o saldo do usuário após cada depósito, saque ou aposta.
+
+RF18 - O sistema deve registrar todas as transações em histórico.
+
+5. Resultados e Premiações
+
+RF19 - O sistema deve atualizar automaticamente os resultados dos jogos.
+
+RF20 - O sistema deve validar apostas com base nos resultados oficiais.
+
+RF21 - O sistema deve creditar automaticamente os ganhos no saldo do usuário.
+
+6. Administração
+
+RF22 - O sistema deve permitir ao administrador cadastrar, editar e excluir eventos esportivos.
+
+RF23 - O sistema deve permitir ao administrador configurar odds manualmente ou importar de API.
+
+RF24 - O sistema deve permitir visualizar relatórios de apostas, lucros e usuários.
+
+RF25 - O sistema deve permitir gerenciar usuários (bloquear, suspender, validar documentos).
+
+7. Notificações e Comunicação
+
+RF26 - O sistema deve enviar notificações de confirmação de depósito, saque e aposta.
+
+RF27 - O sistema deve enviar aviso de aposta ganha ou perdida.
+
+8. Segurança
+
+RF28 - O sistema deve criptografar senhas e dados sensíveis.
+
