@@ -1,4 +1,3 @@
-
 CREATE TABLE IF NOT EXISTS usuarios (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL,
@@ -8,4 +7,36 @@ CREATE TABLE IF NOT EXISTS usuarios (
 	data_cadastro DATETIME NOT NULL,
 	reset_token VARCHAR(255) DEFAULT NULL,
 	reset_token_expira DATETIME DEFAULT NULL
+	, saldo DECIMAL(10,2) NOT NULL DEFAULT 0.00
+);
+
+CREATE TABLE IF NOT EXISTS eventos (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	esporte VARCHAR(50) NOT NULL,
+	descricao VARCHAR(255) NOT NULL,
+	data DATETIME NOT NULL,
+	odd1 DECIMAL(5,2) NOT NULL,
+	odd2 DECIMAL(5,2) NOT NULL,
+	odd3 DECIMAL(5,2) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS apostas (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	usuario_id INT NOT NULL,
+	evento_id INT NOT NULL,
+	valor DECIMAL(10,2) NOT NULL,
+	odd DECIMAL(5,2) NOT NULL,
+	status ENUM('pendente','ganha','perdida') NOT NULL DEFAULT 'pendente',
+	data DATETIME NOT NULL,
+	FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+	FOREIGN KEY (evento_id) REFERENCES eventos(id)
+);
+
+CREATE TABLE IF NOT EXISTS transacoes (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	usuario_id INT NOT NULL,
+	tipo ENUM('deposito','saque') NOT NULL,
+	valor DECIMAL(10,2) NOT NULL,
+	data DATETIME NOT NULL,
+	FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );

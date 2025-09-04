@@ -71,3 +71,43 @@ Saída esperada:
 - Código funcional para register.php, login.php e recover.php.
 - Mensagens de feedback para o usuário (sucesso/erro).
 - Indicação de onde salvar cada arquivo dentro da estrutura MVC.
+
+
+4- agora implemente:
+
+Perfil do usuário: ele deve poder editar os dados pessoais (nome, senha, data de nascimento), ver o saldo disponível e consultar o histórico de depósitos, saques e apostas.
+
+Apostas: listar os eventos esportivos disponíveis, mostrar as odds (pode ser simulação ou via API), permitir apostas simples e salvar cada aposta no banco como “pendente”.
+
+Depósitos e saques: criar formulários para depósitos e saques fictícios que atualizem o saldo do usuário, registrando tudo em um histórico.
+
+Como quero que seja feito:
+
+Usar arquitetura MVC em PHP com PDO.
+
+Criar controllers (UserController, BetController, TransactionController).
+
+Criar models (User, Bet, Transaction, Event).
+
+Criar views simples, bonitas e responsivas (Bootstrap ou Tailwind).
+
+Somente usuários logados podem acessar essas páginas (usar sessões PHP).
+
+Toda comunicação com banco deve ser via PDO.
+
+Estrutura do banco de dados:
+
+usuarios (já existe, mas adicionar campo saldo DECIMAL(10,2)).
+
+transacoes (id, usuario_id, tipo, valor, data).
+
+apostas (id, usuario_id, evento_id, valor, odd, status, data).
+
+eventos (id, esporte, descricao, data, odd1, odd2, odd3).
+
+5 - 
+
+Criar views para perfil, apostas, depósitos/saques e histórico.
+Integrar métodos de edição, depósito, saque e aposta nos controllers.
+Garantir que apenas usuários logados acessem as páginas.
+e Se as credenciais estiverem corretas, o usuário deve ser redirecionado para a página principal (dashboard.php).

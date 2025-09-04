@@ -1,3 +1,27 @@
+	public function getById($id) {
+		$stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE id = ?');
+		$stmt->execute([$id]);
+		return $stmt->fetch();
+	}
+
+	public function update($id, $nome, $senha, $data_nascimento) {
+		$params = [$nome, $data_nascimento, $id];
+		$sql = 'UPDATE usuarios SET nome = ?, data_nascimento = ?';
+		if ($senha) {
+			$sql .= ', senha = ?';
+			$params = [$nome, $data_nascimento, password_hash($senha, PASSWORD_DEFAULT), $id];
+		}
+		$sql .= ' WHERE id = ?';
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute($params);
+	}
+
+	public function getSaldo($id) {
+		$stmt = $this->pdo->prepare('SELECT saldo FROM usuarios WHERE id = ?');
+		$stmt->execute([$id]);
+		$row = $stmt->fetch();
+		return $row ? $row['saldo'] : 0.00;
+	}
 <?php
 require_once __DIR__ . '/../config/database.php';
 
