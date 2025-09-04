@@ -38,3 +38,36 @@ Especificações:
 - Adicione verificação da idade no backend.
 - Para recuperação de senha, crie fluxo simples que gera token de redefinição enviado por e-mail (simulação de envio).
 - Se algum arquivo necessário não existir, crie automaticamente.
+
+3 -
+
+Implemente as funcionalidades de conta nos arquivos register.php, login.php e recover.php em PHP, utilizando PDO para conexão segura com o banco de dados MySQL.
+
+Requisitos:
+- register.php:
+  - Cadastro de novos usuários com nome, e-mail, senha (hash seguro com password_hash) e data de nascimento.
+  - Validação de idade mínima (18 anos).
+  - Verificação se o e-mail já existe no banco antes de inserir.
+  - Mensagens de erro claras em caso de falha.
+
+- login.php:
+  - Autenticação de usuário por e-mail e senha.
+  - Validação da senha com password_verify.
+  - Manter sessão ativa após login bem-sucedido.
+  - Mensagens de erro em caso de credenciais inválidas.
+
+- recover.php:
+  - Funcionalidade de recuperação de senha.
+  - Usuário informa e-mail, o sistema gera token de recuperação e registra no banco.
+  - Envio (ou simulação) de link de redefinição por e-mail.
+  - Página para redefinir senha com verificação do token e atualização no banco.
+
+Banco de Dados:
+- Use a tabela `usuarios` com os campos: id, nome, email, senha, data_nascimento, data_cadastro.
+- Inclua todas as verificações necessárias para falha de conexão e manipulação de dados.
+- Utilize prepared statements para evitar SQL Injection.
+
+Saída esperada:
+- Código funcional para register.php, login.php e recover.php.
+- Mensagens de feedback para o usuário (sucesso/erro).
+- Indicação de onde salvar cada arquivo dentro da estrutura MVC.

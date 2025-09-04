@@ -11,7 +11,11 @@ class Database {
 				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 				PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
 			];
-			self::$instance = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass, $options);
+			try {
+				self::$instance = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass, $options);
+			} catch (PDOException $e) {
+				die('Erro ao conectar ao banco de dados MySQL. Verifique se o XAMPP está rodando, se o banco "legra_bet" existe e se o usuário/senha estão corretos.<br>Detalhe: ' . $e->getMessage());
+			}
 		}
 		return self::$instance;
 	}
