@@ -1,23 +1,24 @@
 
 <?php
+ob_start(); // Garante que não há saída antes do header
 session_start();
 require_once __DIR__ . '/../../config/database.php';
 $msg = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email'] ?? '');
-    $senha = $_POST['senha'] ?? '';
-    $pdo = Database::getInstance();
-    $stmt = $pdo->prepare('SELECT * FROM usuarios WHERE email = ?');
-    $stmt->execute([$email]);
-    $user = $stmt->fetch();
-    if ($user && password_verify($senha, $user['senha'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['user_nome'] = $user['nome'];
-        header('Location: /');
-        exit;
-    } else {
-        $msg = '<div class="text-red-600 mb-2">E-mail ou senha inválidos.</div>';
-    }
+  $email = trim($_POST['email'] ?? '');
+  $senha = $_POST['senha'] ?? '';
+  $pdo = Database::getInstance();
+  $stmt = $pdo->prepare('SELECT * FROM usuarios WHERE email = ?');
+  $stmt->execute([$email]);
+  $user = $stmt->fetch();
+  if ($user && password_verify($senha, $user['senha'])) {
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['user_nome'] = $user['nome'];
+  header('Location: ../../dashboard.php');
+    exit;
+  } else {
+    $msg = '<div class="text-red-600 mb-2">E-mail ou senha inválidos.</div>';
+  }
 }
 ?>
 <?php include __DIR__ . '/../style/head.php'; ?>
