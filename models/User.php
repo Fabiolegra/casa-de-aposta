@@ -1,3 +1,13 @@
+
+<?php
+require_once __DIR__ . '/../config/database.php';
+
+class User {
+	private $pdo;
+	public function __construct() {
+		$this->pdo = Database::getInstance();
+	}
+
 	public function getById($id) {
 		$stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE id = ?');
 		$stmt->execute([$id]);
@@ -21,14 +31,6 @@
 		$stmt->execute([$id]);
 		$row = $stmt->fetch();
 		return $row ? $row['saldo'] : 0.00;
-	}
-<?php
-require_once __DIR__ . '/../config/database.php';
-
-class User {
-	private $pdo;
-	public function __construct() {
-		$this->pdo = Database::getInstance();
 	}
 
 	public function create($nome, $email, $senha, $data_nascimento) {
@@ -64,27 +66,11 @@ class User {
 		$stmt->execute([$email]);
 		return $stmt->fetch();
 	}
-
-	public function setResetToken($email, $token) {
-		$stmt = $this->pdo->prepare('UPDATE usuarios SET reset_token = ?, reset_token_expira = DATE_ADD(NOW(), INTERVAL 1 HOUR) WHERE email = ?');
-		$stmt->execute([$token, $email]);
-	}
-
-	public function verifyResetToken($email, $token) {
-		$stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE email = ? AND reset_token = ? AND reset_token_expira > NOW()');
-		$stmt->execute([$email, $token]);
-		return $stmt->fetch();
-	}
-
-	public function updatePassword($email, $senha) {
-		$hash = password_hash($senha, PASSWORD_DEFAULT);
-		$stmt = $this->pdo->prepare('UPDATE usuarios SET senha = ?, reset_token = NULL, reset_token_expira = NULL WHERE email = ?');
-		$stmt->execute([$hash, $email]);
-	}
-
-	private function calcularIdade($data_nascimento) {
-		$nasc = new DateTime($data_nascimento);
+	// Calcula idade a partir da data de nascimento (Y-m-d)
+	public function calcularIdade($data_nascimento) {
 		$hoje = new DateTime();
+		$nasc = DateTime::createFromFormat('Y-m-d', $data_nascimento);
+		if (!$nasc) return 0;
 		$idade = $hoje->diff($nasc)->y;
 		return $idade;
 	}

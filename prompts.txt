@@ -111,3 +111,21 @@ Criar views para perfil, apostas, depósitos/saques e histórico.
 Integrar métodos de edição, depósito, saque e aposta nos controllers.
 Garantir que apenas usuários logados acessem as páginas.
 e Se as credenciais estiverem corretas, o usuário deve ser redirecionado para a página principal (dashboard.php).
+
+6 - 
+
+Melhore o layout do meu dashboard (dashboard.php) do site de apostas esportivas LegraBet.
+
+O que quero adicionar e melhorar:
+
+Mostrar em destaque o saldo atual do usuário (buscando do banco via $_SESSION['user_id']).
+
+Exibir um resumo rápido das últimas apostas (3 últimas, com valor, odd e status).
+
+Exibir um resumo das últimas transações depósitos e saques.
+
+Substituir os links simples por um grid de cards modernos e responsivos, cada card representando uma ação (Perfil, Apostar, Depositar, Sacar, Sair).
+
+Usar Tailwind CSS para deixar o design mais bonito, com cores modernas, cantos arredondados e sombras.
+
+O layout deve ser mobile-first, mas também ficar bom em telas grandes.
