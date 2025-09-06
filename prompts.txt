@@ -129,3 +129,8 @@ Substituir os links simples por um grid de cards modernos e responsivos, cada ca
 Usar Tailwind CSS para deixar o design mais bonito, com cores modernas, cantos arredondados e sombras.
 
 O layout deve ser mobile-first, mas também ficar bom em telas grandes.
+
+7-
+
+
+
