@@ -21,16 +21,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 ?>
+
 <?php include __DIR__ . '/../style/head.php'; ?>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-  <form method="POST" action="" class="bg-white p-6 rounded shadow-md w-full max-w-md">
-    <h2 class="text-2xl font-bold mb-4 text-purple-700">Login</h2>
+<body class="min-h-screen flex items-center justify-center" style="background-color:#121212;">
+  <form method="POST" action="" class="rounded-xl shadow-xl w-full max-w-md p-6" style="background-color:#1F1F1F;">
+    <h2 class="text-2xl font-bold mb-4" style="color:#7C4DFF;">Login</h2>
     <?php if($msg) echo $msg; ?>
-    <input type="email" name="email" placeholder="E-mail" required class="mb-3 w-full p-2 border rounded" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>">
-    <input type="password" name="senha" placeholder="Senha" required class="mb-3 w-full p-2 border rounded">
-    <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition">Entrar</button>
-    <p class="mt-3 text-sm text-center"><a href="recover.php" class="text-purple-600 hover:underline">Esqueci minha senha</a></p>
-    <p class="mt-3 text-sm text-center"><a href="register.php" class="text-purple-600 hover:underline">Não tenho uma conta</a></p>
+    <input type="email" name="email" placeholder="E-mail" required class="mb-3 w-full p-2 rounded" style="background-color:#1F1F1F;color:#E0E0E0;border:1px solid #7C4DFF;" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>">
+    <input type="password" name="senha" placeholder="Senha" required class="mb-3 w-full p-2 rounded" style="background-color:#1F1F1F;color:#E0E0E0;border:1px solid #7C4DFF;">
+    <button type="submit" class="w-full font-bold py-2 rounded" style="background-color:#7C4DFF;color:#FFFFFF;box-shadow:0 0 8px #7C4DFF;">Entrar</button>
+    <p class="mt-3 text-sm text-center"><a href="recover.php" style="color:#2979FF;" class="hover:underline">Esqueci minha senha</a></p>
+    <p class="mt-3 text-sm text-center"><a href="register.php" style="color:#7C4DFF;" class="hover:underline">Não tenho uma conta</a></p>
   </form>
 <?php include __DIR__ . '/../style/footer.php'; ?>
 </body>
