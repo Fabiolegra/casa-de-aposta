@@ -131,6 +131,8 @@ Usar Tailwind CSS para deixar o design mais bonito, com cores modernas, cantos a
 O layout deve ser mobile-first, mas também ficar bom em telas grandes.
 
 7-
+crie todas as funcionalidades em apostar
 
+8-
 
 
