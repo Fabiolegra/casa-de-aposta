@@ -73,10 +73,11 @@ $ultimasTransacoes = array_slice($transacoes, 0, 3);
         <span class="text-5xl font-extrabold" style="color:#00E676;filter:drop-shadow(0 0 8px #00E676);">R$ <?php echo number_format($saldo,2,',','.'); ?></span>
       </div>
       <div class="flex gap-3 mt-4 md:mt-0">
-        <a href="views/transaction/deposit.php" class="px-6 py-3 rounded-xl font-bold text-lg" style="background-color:#7C4DFF;color:#FFFFFF;box-shadow:0 0 8px #7C4DFF;">Depositar</a>
-        <a href="views/transaction/withdraw.php" class="px-6 py-3 rounded-xl font-bold text-lg" style="background-color:#FF1744;color:#FFFFFF;box-shadow:0 0 8px #FF1744;">Sacar</a>
-        <a href="views/bet/index.php" class="px-6 py-3 rounded-xl font-bold text-lg" style="background-color:#7C4DFF;color:#FFFFFF;box-shadow:0 0 8px #7C4DFF;">Apostar</a>
-        <a href="views/user/profile.php" class="px-6 py-3 rounded-xl font-bold text-lg" style="background-color:#2979FF;color:#FFFFFF;box-shadow:0 0 8px #2979FF;">Perfil</a>
+    <a href="views/transaction/deposit.php" class="px-6 py-3 rounded-xl font-bold text-lg" style="background-color:#7C4DFF;color:#FFFFFF;box-shadow:0 0 8px #7C4DFF;">Depositar</a>
+    <a href="views/transaction/withdraw.php" class="px-6 py-3 rounded-xl font-bold text-lg" style="background-color:#FF1744;color:#FFFFFF;box-shadow:0 0 8px #FF1744;">Sacar</a>
+    <a href="views/bet/index.php" class="px-6 py-3 rounded-xl font-bold text-lg" style="background-color:#7C4DFF;color:#FFFFFF;box-shadow:0 0 8px #7C4DFF;">Apostar</a>
+    <a href="views/bet/brasileirao.php" class="px-6 py-3 rounded-xl font-bold text-lg" style="background-color:#00E676;color:#121212;box-shadow:0 0 8px #00E676;">Brasileirão</a>
+    <a href="views/user/profile.php" class="px-6 py-3 rounded-xl font-bold text-lg" style="background-color:#2979FF;color:#FFFFFF;box-shadow:0 0 8px #2979FF;">Perfil</a>
       </div>
     </div>
     <!-- Últimas apostas -->
