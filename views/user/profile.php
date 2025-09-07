@@ -1,4 +1,18 @@
-<?php include __DIR__ . '/../style/head.php'; ?>
+<?php
+if (!isset($user) || !isset($saldo) || !isset($transacoes) || !isset($apostas)) {
+  session_start();
+  require_once __DIR__ . '/../../models/User.php';
+  require_once __DIR__ . '/../../models/Transaction.php';
+  require_once __DIR__ . '/../../models/Bet.php';
+  $userModel = new User();
+  $user = $userModel->getById($_SESSION['user_id']);
+  $saldo = $userModel->getSaldo($_SESSION['user_id']);
+  $transModel = new Transaction();
+  $transacoes = $transModel->history($_SESSION['user_id']);
+  $betModel = new Bet();
+  $apostas = $betModel->history($_SESSION['user_id']);
+}
+include __DIR__ . '/../style/head.php'; ?>
 <body class="bg-gray-100 min-h-screen">
 <div class="container mx-auto py-8">
   <h2 class="text-2xl font-bold mb-4 text-purple-700">Perfil do Usuário</h2>
