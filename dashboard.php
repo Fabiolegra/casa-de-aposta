@@ -100,33 +100,49 @@ $ultimasTransacoes = array_slice($transacoes, 0, 3);
               $statusIcon = $status=='ganha' ? 'emoji_events' : ($status=='perdida' ? 'cancel' : 'hourglass_empty');
               $statusColor = $status=='ganha' ? '#00E676' : ($status=='perdida' ? '#FF1744' : '#616161');
               $statusText = $status=='ganha' ? '#121212' : '#FFFFFF';
+              $valorPremio = $status=='ganha' ? $a['valor']*$a['odd'] : 0;
             ?>
             <span class="inline-flex items-center gap-1 px-2 py-1 rounded font-bold" style="background-color:<?php echo $statusColor; ?>;color:<?php echo $statusText; ?>;box-shadow:0 0 8px <?php echo $statusColor; ?>;">
               <span class="material-icons text-base align-middle"><?php echo $statusIcon; ?></span>
-              <?php echo ucfirst($status); ?>
+              <?php
+                if ($status == 'ganha') {
+                  echo 'Vitória (+R$ '.number_format($valorPremio,2,',','.') .')';
+                } elseif ($status == 'perdida') {
+                  echo 'Perda (-R$ '.number_format($a['valor'],2,',','.') .')';
+                } else {
+                  echo 'Pendente';
+                }
+              ?>
             </span>
           </div>
         </div>
         <?php endforeach; ?>
       </div>
     </div>
-    <!-- Últimas transações -->
+    <!-- Histórico de apostas -->
     <div class="rounded-xl shadow-xl p-6 border" style="background-color:#1F1F1F;border-color:#7C4DFF;">
-      <h3 class="text-xl font-bold mb-4 flex items-center gap-2" style="color:#FF1744;"><span class="material-icons align-middle">account_balance_wallet</span>Últimas Transações</h3>
+      <h3 class="text-xl font-bold mb-4 flex items-center gap-2" style="color:#FF1744;"><span class="material-icons align-middle">account_balance_wallet</span>Histórico de Apostas</h3>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <?php foreach($ultimasTransacoes as $t): ?>
+        <?php foreach($apostas as $a): ?>
         <div class="rounded-lg p-4 flex flex-col gap-2 shadow-md border" style="background-color:#121212;border-color:#7C4DFF;">
           <div class="flex items-center gap-2">
-            <?php
-              $icon = $t['tipo']=='deposito' ? 'arrow_downward' : 'arrow_upward';
-              $iconColor = $t['tipo']=='deposito' ? '#00E676' : '#FF1744';
-            ?>
-            <span class="material-icons" style="color:<?php echo $iconColor; ?>;filter:drop-shadow(0 0 8px <?php echo $iconColor; ?>);"><?php echo $icon; ?></span>
-            <span class="font-bold" style="color:#E0E0E0;"><?php echo ucfirst($t['tipo']); ?></span>
+            <span class="material-icons" style="color:#7C4DFF;">sports_soccer</span>
+            <span class="font-bold" style="color:#E0E0E0;"><?php echo $a['descricao']; ?></span>
           </div>
           <div class="flex gap-2 text-lg">
-            <span class="px-2 py-1 rounded font-bold" style="background-color:#2979FF;color:#FFFFFF;box-shadow:0 0 8px #2979FF;">R$ <?php echo number_format($t['valor'],2,',','.'); ?></span>
-            <span class="text-xs" style="color:#616161;"><?php echo $t['data']; ?></span>
+            <span class="px-2 py-1 rounded font-bold" style="background-color:#2979FF;color:#FFFFFF;box-shadow:0 0 8px #2979FF;">R$ <?php echo number_format($a['valor'],2,',','.'); ?></span>
+            <span class="text-xs" style="color:#616161;"><?php echo $a['data']; ?></span>
+          </div>
+          <div>
+            <?php
+              $status = $a['status'];
+              $valorPremio = $status=='ganha' ? $a['valor']*$a['odd'] : 0;
+              $statusColor = $status=='ganha' ? '#00E676' : ($status=='perdida' ? '#FF1744' : '#616161');
+              $statusText = $status=='ganha' ? '#121212' : '#FFFFFF';
+            ?>
+            <span class="inline-flex items-center gap-1 px-2 py-1 rounded font-bold" style="background-color:<?php echo $statusColor; ?>;color:<?php echo $statusText; ?>;box-shadow:0 0 8px <?php echo $statusColor; ?>;">
+              <?php echo ($status=='ganha' ? 'Vitória (+R$ '.number_format($valorPremio,2,',','.') .')' : ($status=='perdida' ? 'Perda (-R$ '.number_format($a['valor'],2,',','.') .')' : 'Pendente')); ?>
+            </span>
           </div>
         </div>
         <?php endforeach; ?>

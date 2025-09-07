@@ -35,14 +35,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
                 $betModel = new Bet();
                 $betModel->place($_SESSION['user_id'], $evento_id, $valor, $odd);
+                // Pega o id da aposta recém criada
+                $aposta_id = $betModel->pdo->lastInsertId();
                 // Desconta saldo e registra transação
                 $transModel = new Transaction();
                 $transModel->withdraw($_SESSION['user_id'], $valor);
                 if ($aposta === $resultado) {
                     $premio = $valor * $odd;
                     $transModel->deposit($_SESSION['user_id'], $premio);
+                    $betModel->updateStatus($aposta_id, 'ganha');
                     $msg = '<div class="text-green-600 mb-2">Parabéns! Você acertou e ganhou R$ '.number_format($premio,2,',','.').'. Redirecionando...</div>';
                 } else {
+                    $betModel->updateStatus($aposta_id, 'perdida');
                     $msg = '<div class="text-red-600 mb-2">Você errou o resultado. Tente novamente! Redirecionando...</div>';
                 }
                 echo $msg;

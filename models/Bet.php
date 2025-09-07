@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 class Bet {
-    private $pdo;
+    public $pdo;
     public function __construct() {
         $this->pdo = Database::getInstance();
     }
@@ -13,5 +13,10 @@ class Bet {
         $stmt = $this->pdo->prepare('SELECT a.*, e.descricao, e.esporte FROM apostas a JOIN eventos e ON a.evento_id = e.id WHERE a.usuario_id = ? ORDER BY a.data DESC');
         $stmt->execute([$usuario_id]);
         return $stmt->fetchAll();
+    }
+    // Atualiza o status da aposta (ganha, perdida)
+    public function updateStatus($aposta_id, $status) {
+        $stmt = $this->pdo->prepare('UPDATE apostas SET status = ? WHERE id = ?');
+        $stmt->execute([$status, $aposta_id]);
     }
 }

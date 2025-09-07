@@ -13,7 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   } else {
     $transModel = new Transaction();
     $transModel->deposit($_SESSION['user_id'], $valor);
-    $msg = '<div style="color:#00E676;" class="mb-2">Depósito realizado com sucesso!</div>';
+    echo '<div style="color:#00E676;" class="mb-2">Depósito realizado com sucesso! Redirecionando...</div>';
+    echo '<script>setTimeout(function(){ window.location.href = "../../dashboard.php"; }, 1500);</script>';
+    exit;
   }
 }
 ?>
