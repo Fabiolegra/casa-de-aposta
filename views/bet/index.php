@@ -70,81 +70,84 @@ $events = [
 ];
 include __DIR__ . '/../style/head.php';
 ?>
-<body class="min-h-screen" style="background-color:#121212;">
+<body class="min-h-screen" style="background-color:#000000;">
 <div class="max-w-5xl mx-auto py-8 px-2">
-  <h2 class="text-3xl font-extrabold mb-8 text-center" style="color:#7C4DFF;letter-spacing:1px;text-shadow:0 0 8px #7C4DFF;">Aposte nos Jogos do Brasileirão</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-    <?php foreach($events as $e): ?>
-    <div class="rounded-2xl shadow-2xl p-6 flex flex-col gap-4 border hover:scale-[1.03] transition-transform duration-200" style="background:linear-gradient(120deg,#1F1F1F 80%,#7C4DFF 100%);border-color:#7C4DFF;">
-      <div class="flex items-center gap-3 mb-2">
-        <span class="font-bold text-lg" style="color:#E0E0E0;"><?php echo $e['descricao']; ?></span>
-      </div>
-      <div class="flex gap-4 items-center">
-        <span class="text-sm font-bold px-2 py-1 rounded" style="background-color:#616161;color:#E0E0E0;">Data: <?php echo $e['data']; ?></span>
-      </div>
-      <div class="flex gap-2 justify-center mb-2">
-        <span class="px-3 py-2 rounded-xl font-bold text-lg shadow" style="background-color:#7C4DFF;color:#FFFFFF;box-shadow:0 0 8px #7C4DFF;">Mandante: <?php echo $e['odd_home']; ?></span>
-        <span class="px-3 py-2 rounded-xl font-bold text-lg shadow" style="background-color:#616161;color:#FFFFFF;">Empate: <?php echo $e['odd_draw']; ?></span>
-        <span class="px-3 py-2 rounded-xl font-bold text-lg shadow" style="background-color:#2979FF;color:#FFFFFF;box-shadow:0 0 8px #2979FF;">Visitante: <?php echo $e['odd_away']; ?></span>
-      </div>
-      <form method="POST" action="place.php" class="flex flex-col gap-2 items-center">
-        <input type="hidden" name="evento_id" value="<?php echo $e['id']; ?>">
-        <input type="hidden" name="resultado" value="<?php echo $e['resultado']; ?>">
-        <div class="flex gap-2 w-full">
-          <input type="number" name="valor" min="1" step="0.01" placeholder="Valor da aposta" class="w-1/2 p-2 rounded text-lg" style="background-color:#1F1F1F;color:#E0E0E0;border:1px solid #7C4DFF;">
-          <select name="aposta" class="w-1/2 p-2 rounded text-lg" style="background-color:#1F1F1F;color:#E0E0E0;border:1px solid #7C4DFF;">
+  <h2 class="text-3xl font-extrabold mb-8 text-center" style="color:#FFD700;letter-spacing:1px;">Aposte nos Jogos do Brasileirão</h2>
+  <form method="POST" action="place.php" id="form-combinada">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <?php foreach($events as $e): ?>
+  <div class="rounded-2xl p-6 flex flex-col gap-4 border hover:scale-[1.03] transition-transform duration-200" style="background-color:#1A1A1A;border-color:#FFD700;">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="font-bold text-lg" style="color:#FFD700;"><?php echo $e['descricao']; ?></span>
+        </div>
+        <div class="flex gap-4 items-center">
+          <span class="text-sm font-bold px-2 py-1 rounded" style="background-color:#FFD700;color:#000000;">Data: <?php echo $e['data']; ?></span>
+        </div>
+        <div class="flex gap-2 justify-center mb-2">
+          <label class="flex flex-col items-center">
+            <input type="checkbox" name="selecionados[]" value="<?php echo $e['id']; ?>" class="form-checkbox h-5 w-5 text-[#7C4DFF]" onchange="toggleAposta(this, <?php echo $e['id']; ?>)">
+            <span class="text-xs mt-1" style="color:#FFD700;">Selecionar</span>
+          </label>
+          <span class="px-3 py-2 rounded-xl font-bold text-lg" style="background-color:#FFD700;color:#000000;">Mandante: <?php echo $e['odd_home']; ?></span>
+          <span class="px-3 py-2 rounded-xl font-bold text-lg" style="background-color:#FFD700;color:#000000;">Empate: <?php echo $e['odd_draw']; ?></span>
+          <span class="px-3 py-2 rounded-xl font-bold text-lg" style="background-color:#FFD700;color:#000000;">Visitante: <?php echo $e['odd_away']; ?></span>
+        </div>
+        <div class="flex gap-2 w-full" id="aposta-<?php echo $e['id']; ?>" style="display:none;">
+          <select name="aposta[<?php echo $e['id']; ?>]" class="w-1/2 p-2 rounded text-lg" style="background-color:#FFEB3B;color:#000000;border:1px solid #FFD700;">
             <option value="home">Mandante</option>
             <option value="draw">Empate</option>
             <option value="away">Visitante</option>
           </select>
         </div>
-        <button type="submit" class="w-full font-bold py-3 rounded-xl mt-2 text-lg shadow-lg" style="background-color:#00E676;color:#121212;box-shadow:0 0 8px #00E676;">Apostar</button>
-      </form>
+      </div>
+      <?php endforeach; ?>
     </div>
-    <?php endforeach; ?>
-  </div>
+    <div class="mt-8 flex flex-col items-center gap-4">
+  <input type="number" name="valor_combinada" min="1" step="0.01" placeholder="Valor total da aposta combinada" class="w-1/2 p-3 rounded-xl text-lg" style="background-color:#FFEB3B;color:#000000;border:2px solid #FFD700;">
+  <button type="submit" class="w-full font-bold py-3 rounded-xl text-lg" style="background-color:#FFD700;color:#000000;">Apostar Combinada</button>
+    </div>
+  </form>
+  <script>
+    function toggleAposta(checkbox, id) {
+      var el = document.getElementById('aposta-' + id);
+      el.style.display = checkbox.checked ? 'flex' : 'none';
+    }
+  </script>
 </div>
 <?php
-// Exemplo de histórico de apostas (substitua por dados reais do usuário)
-$historicoApostas = [
-  [
-    'descricao' => 'Palmeiras x Goiás',
-    'placar' => '3 x 0',
-    'odd' => 1.45,
-    'valor' => 50.00,
-    'status' => 'ganha',
-  ],
-  [
-    'descricao' => 'Flamengo x Bahia',
-    'placar' => '2 x 1',
-    'odd' => 1.70,
-    'valor' => 30.00,
-    'status' => 'perdida',
-  ],
-  [
-    'descricao' => 'Corinthians x Internacional',
-    'placar' => '1 x 1',
-    'odd' => 3.20,
-    'valor' => 20.00,
-    'status' => 'pendente',
-  ],
-];
+require_once __DIR__ . '/../../models/Bet.php';
+session_start();
+$betModel = new Bet();
+$historicoApostas = $betModel->history($_SESSION['user_id']);
 ?>
-
 <div class="mt-16">
-  <h2 class="text-3xl font-extrabold mb-6 text-center" style="color:#7C4DFF;text-shadow:0 0 8px #7C4DFF;">Histórico de Apostas</h2>
+  <h2 class="text-3xl font-extrabold mb-6 text-center" style="color:#FFD700;">Histórico de Apostas</h2>
+  <div class="flex justify-center gap-8 mb-8">
+    <div class="flex items-center gap-2">
+      <span class="material-icons text-[#7C4DFF] text-2xl">sports_esports</span>
+  <span class="font-semibold text-lg" style="color:#FFD700;">Aposta</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="material-icons text-[#FFD700] text-2xl">emoji_events</span>
+  <span class="font-semibold text-lg" style="color:#FFD700;">Ganho</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="material-icons text-[#616161] text-2xl">cancel</span>
+  <span class="font-semibold text-lg" style="color:#FFD700;">Perda</span>
+    </div>
+  </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     <?php foreach($historicoApostas as $a): ?>
-    <div class="rounded-2xl p-6 flex flex-col gap-3 shadow-xl border hover:scale-[1.03] transition-transform duration-200" style="background-color:#121212;border-color:#7C4DFF;">
-      <div class="flex items-center gap-3 mb-2">
-        <span class="font-bold text-lg" style="color:#E0E0E0;"><?php echo $a['descricao']; ?></span>
+  <div class="rounded-xl p-6 flex flex-col gap-3 border hover:scale-[1.02] transition-transform duration-200" style="background-color:#1A1A1A;border-color:#FFD700;">
+      <div class="flex items-center gap-2 mb-2">
+  <span class="font-bold text-lg" style="color:#FFD700;"><?php echo $a['descricao']; ?></span>
         <?php if(isset($a['placar'])): ?>
-          <span class="text-xs font-bold px-2 py-1 rounded" style="background-color:#121212;color:#7C4DFF;">Placar: <?php echo $a['placar']; ?></span>
+          <span class="text-xs font-bold px-2 py-1 rounded" style="background-color:#FFD700;color:#000000;">Placar: <?php echo $a['placar']; ?></span>
         <?php endif; ?>
       </div>
       <div class="flex gap-2 items-center justify-between">
-        <span class="px-4 py-2 rounded-xl font-bold text-xl shadow" style="background-color:#7C4DFF;color:#FFFFFF;box-shadow:0 0 8px #7C4DFF;">Odd: <?php echo $a['odd']; ?></span>
-        <span class="px-4 py-2 rounded-xl font-bold text-xl shadow" style="background-color:#00E676;color:#121212;box-shadow:0 0 8px #00E676;">R$ <?php echo number_format($a['valor'],2,',','.'); ?></span>
+  <span class="px-4 py-2 rounded-xl font-bold text-xl" style="background-color:#FFD700;color:#000000;">Odd: <?php echo $a['odd']; ?></span>
+  <span class="px-4 py-2 rounded-xl font-bold text-xl" style="background-color:#FFD700;color:#000000;">R$ <?php echo number_format($a['valor'],2,',','.'); ?></span>
       </div>
       <div>
         <?php
@@ -154,7 +157,7 @@ $historicoApostas = [
           $statusText = $status=='ganha' ? '#121212' : '#FFFFFF';
           $valorPremio = $status=='ganha' ? $a['valor']*$a['odd'] : 0;
         ?>
-        <span class="inline-flex items-center gap-1 px-2 py-1 rounded font-bold" style="background-color:<?php echo $statusColor; ?>;color:<?php echo $statusText; ?>;box-shadow:0 0 8px <?php echo $statusColor; ?>;">
+  <span class="inline-flex items-center gap-1 px-2 py-1 rounded font-bold" style="background-color:<?php echo $statusColor; ?>;color:<?php echo $statusText; ?>;">
           <span class="material-icons text-base align-middle"><?php echo $statusIcon; ?></span>
           <?php
             if ($status == 'ganha') {

@@ -57,42 +57,42 @@ $classificacao = [
 ];
 ?>
 <?php include __DIR__ . '/../style/head.php'; ?>
-<body class="min-h-screen" style="background-color:#121212;">
+<body class="min-h-screen" style="background-color:#000000;">
 <div class="max-w-5xl mx-auto py-8 px-2">
-  <h2 class="text-3xl font-bold mb-6" style="color:#7C4DFF;">Brasileirão Série A - 4ª Rodada (2025)</h2>
-  <h3 class="text-xl font-bold mb-4" style="color:#2979FF;">Jogos e Resultados</h3>
-  <table class="w-full rounded-xl shadow-xl mb-8" style="background-color:#1F1F1F;">
+  <h2 class="text-3xl font-bold mb-6" style="color:#FFD700;">Brasileirão Série A - 4ª Rodada (2025)</h2>
+  <h3 class="text-xl font-bold mb-4" style="color:#FFD700;">Jogos e Resultados</h3>
+  <table class="w-full rounded-xl mb-8" style="background-color:#1A1A1A;">
     <thead>
-      <tr style="color:#7C4DFF;background-color:#1E1E1E;">
+  <tr style="color:#FFD700;background-color:#1A1A1A;">
         <th>Data</th><th>Mandante</th><th>Placar</th><th>Visitante</th><th>Odds</th>
       </tr>
     </thead>
     <tbody>
       <?php foreach($jogos as $jogo): ?>
-      <tr style="color:#E0E0E0;">
+  <tr style="color:#FFD700;">
         <td><?php echo $jogo['dateEvent']; ?></td>
         <td><?php echo $jogo['strHomeTeam']; ?></td>
         <td><?php echo $jogo['intHomeScore'] . ' x ' . $jogo['intAwayScore']; ?></td>
         <td><?php echo $jogo['strAwayTeam']; ?></td>
         <td>
-          <span class="px-2 py-1 rounded font-bold" style="background-color:#7C4DFF;color:#FFFFFF;box-shadow:0 0 8px #7C4DFF;">Mandante: <?php echo number_format($jogo['odds']['home'],2); ?></span>
-          <span class="px-2 py-1 rounded font-bold" style="background-color:#616161;color:#FFFFFF;">Empate: <?php echo number_format($jogo['odds']['draw'],2); ?></span>
-          <span class="px-2 py-1 rounded font-bold" style="background-color:#2979FF;color:#FFFFFF;box-shadow:0 0 8px #2979FF;">Visitante: <?php echo number_format($jogo['odds']['away'],2); ?></span>
+          <span class="px-2 py-1 rounded font-bold" style="background-color:#FFD700;color:#000000;">Mandante: <?php echo number_format($jogo['odds']['home'],2); ?></span>
+          <span class="px-2 py-1 rounded font-bold" style="background-color:#FFD700;color:#000000;">Empate: <?php echo number_format($jogo['odds']['draw'],2); ?></span>
+          <span class="px-2 py-1 rounded font-bold" style="background-color:#FFD700;color:#000000;">Visitante: <?php echo number_format($jogo['odds']['away'],2); ?></span>
         </td>
       </tr>
       <?php endforeach; ?>
     </tbody>
   </table>
-  <h3 class="text-xl font-bold mb-4" style="color:#00E676;">Classificação Atual</h3>
-  <table class="w-full rounded-xl shadow-xl mb-8" style="background-color:#1F1F1F;">
+  <h3 class="text-xl font-bold mb-4" style="color:#FFD700;">Classificação Atual</h3>
+  <table class="w-full rounded-xl mb-8" style="background-color:#1A1A1A;">
     <thead>
-      <tr style="color:#7C4DFF;background-color:#1E1E1E;">
+  <tr style="color:#FFD700;background-color:#1A1A1A;">
         <th>Pos</th><th>Time</th><th>Pontos</th><th>Vitórias</th><th>Empates</th><th>Derrotas</th><th>Gols Pró</th><th>Gols Contra</th>
       </tr>
     </thead>
     <tbody>
       <?php foreach($classificacao as $time): ?>
-      <tr style="color:#E0E0E0;">
+  <tr style="color:#FFD700;">
         <td><?php echo $time['intRank']; ?></td>
         <td><?php echo $time['name']; ?></td>
         <td><?php echo $time['intPoints']; ?></td>
