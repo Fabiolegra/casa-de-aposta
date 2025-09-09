@@ -76,7 +76,7 @@ $ultimasTransacoes = array_slice($transacoes, 0, 9);
       <div class="flex gap-3 mt-4 md:mt-0">
   <a href="views/transaction/deposit.php" class="px-6 py-3 rounded-xl font-bold text-lg hover:bg-[#FFC107]" style="background-color:#FFD700;color:#000000;">Depositar</a>
   <a href="views/transaction/withdraw.php" class="px-6 py-3 rounded-xl font-bold text-lg hover:bg-[#FFC107]" style="background-color:#FFD700;color:#000000;">Sacar</a>
-  <a href="views/bet/index.php" class="px-6 py-3 rounded-xl font-bold text-lg hover:bg-[#FFC107]" style="background-color:#FFD700;color:#000000;">Apostar</a>
+  <a href="views/bet/index.php" class="px-4 py-2 rounded-xl font-bold text-base" style="background-color:#00E676;color:#000000;border:2px solid #00E676;">Apostar</a>
       </div>
     </div>
     <!-- Últimas apostas -->
@@ -109,7 +109,7 @@ $ultimasTransacoes = array_slice($transacoes, 0, 9);
                 if ($status == 'ganha') {
                   echo 'Vitória (+R$ '.number_format($valorPremio,2,',','.') .')';
                 } elseif ($status == 'perdida') {
-                  echo 'Perda (-R$ '.number_format($a['valor'],2,',','.') .')';
+                  echo 'Derrota (-R$ '.number_format($a['valor'],2,',','.') .')';
                 } else {
                   echo 'Pendente';
                 }
@@ -144,7 +144,7 @@ $ultimasTransacoes = array_slice($transacoes, 0, 9);
                 $icon = 'emoji_events';
                 $iconColor = '#00E676'; // verde
                 $tipoLabel = 'Ganho';
-              } elseif ($t['tipo'] == 'perca') {
+              } elseif ($t['tipo'] == 'derrota') {
                 $icon = 'cancel';
                 $iconColor = '#FF1744'; // vermelho
                 $tipoLabel = 'Derrota';

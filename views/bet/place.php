@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $transModel->ganho($_SESSION['user_id'], $premio);
                 $msg = '<div class="text-green-600 mb-2">Parabéns! Você acertou todas e ganhou R$ '.number_format($premio,2,',','.').'. Redirecionando...</div>';
             } else {
-                $transModel->perca($_SESSION['user_id'], $valor);
+                $transModel->derrota($_SESSION['user_id'], $valor);
                 $msg = '<div class="text-red-600 mb-2">Você errou uma ou mais apostas. Tente novamente! Redirecionando...</div>';
             }
             echo $msg;
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $msg = '<div class="text-green-600 mb-2">Parabéns! Você acertou e ganhou R$ '.number_format($premio,2,',','.').'. Redirecionando...</div>';
             } else {
                 $betModel->updateStatus($aposta_id, 'perdida');
-                $transModel->perca($_SESSION['user_id'], $valor);
+                $transModel->derrota($_SESSION['user_id'], $valor);
                 $msg = '<div class="text-red-600 mb-2">Você errou o resultado. Tente novamente! Redirecionando...</div>';
             }
             echo $msg;

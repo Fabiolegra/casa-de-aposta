@@ -136,4 +136,5 @@ crie todas as funcionalidades em apostar
 8-
 Quero adicionar a funcionalidade de perfil do usuário no meu site de apostas. O perfil deve permitir que o usuário visualize e edite suas informações pessoais, além de exibir dados importantes como saldo e histórico.
 
+9-
 

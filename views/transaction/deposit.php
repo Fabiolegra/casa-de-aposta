@@ -25,10 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="w-full max-w-md mx-auto py-8 px-4">
       <h2 class="text-2xl font-bold mb-4 text-center" style="color:#E0E0E0;">Depósito</h2>
       <?php if($msg) echo $msg; ?>
-  <form method="POST" action="" class="rounded-xl p-6 flex flex-col gap-4" style="background-color:#1A1A1A;">
-  <input type="number" name="valor" min="1" step="0.01" placeholder="Valor do depósito" required class="w-full p-2 rounded-xl border text-lg" style="background-color:#FFD700;color:#000000;border:2px solid #FFD700;">
-  <button type="submit" class="w-full font-bold py-2 rounded-xl text-lg hover:bg-[#FFD700]" style="background-color:#FFD700;color:#000000;">Depositar</button>
-      </form>
+  <form method="POST" action="" class="rounded-xl p-6 flex flex-col gap-6 border-2" style="background-color:#1A1A1A;border-color:#FFD700;">
+    <label for="valor" class="font-bold mb-2" style="color:#FFD700;">Valor do depósito</label>
+    <input type="number" name="valor" id="valor" min="1" step="0.01" placeholder="Digite o valor" required class="w-full p-3 rounded-xl border-2 text-lg" style="background-color:#FFD700;color:#000000;border-color:#FFD700;">
+    <button type="submit" class="w-full font-bold py-3 rounded-xl text-lg" style="background-color:#FFD700;color:#000000;">Depositar</button>
+  </form>
     </div>
   </main>
   <footer class="w-full mt-auto">

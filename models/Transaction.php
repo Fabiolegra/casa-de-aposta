@@ -15,8 +15,8 @@ class Transaction {
         $stmt->execute([$usuario_id, $valor]);
         $this->updateSaldo($usuario_id, $valor);
     }
-    public function perca($usuario_id, $valor) {
-        $stmt = $this->pdo->prepare('INSERT INTO transacoes (usuario_id, tipo, valor, data) VALUES (?, "perca", ?, NOW())');
+    public function derrota($usuario_id, $valor) {
+        $stmt = $this->pdo->prepare('INSERT INTO transacoes (usuario_id, tipo, valor, data) VALUES (?, "derrota", ?, NOW())');
         $stmt->execute([$usuario_id, $valor]);
     }
     public function withdraw($usuario_id, $valor, $tipo = 'saque') {
