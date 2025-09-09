@@ -103,8 +103,8 @@ include __DIR__ . '/../style/head.php';
       <?php endforeach; ?>
     </div>
     <div class="mt-8 flex flex-col items-center gap-4">
-  <input type="number" name="valor_combinada" min="1" step="0.01" placeholder="Valor total da aposta combinada" class="w-1/2 p-3 rounded-xl text-lg" style="background-color:#FFEB3B;color:#000000;border:2px solid #FFD700;">
-  <button type="submit" class="w-full font-bold py-3 rounded-xl text-lg" style="background-color:#FFD700;color:#000000;">Apostar Combinada</button>
+  <input type="number" name="valor_combinada" id="valor_combinada" min="1" step="0.01" placeholder="Valor total da aposta combinada" class="w-1/2 p-3 rounded-xl text-lg" style="background-color:#FFEB3B;color:#000000;border:2px solid #FFD700;">
+  <button type="submit" id="btn-apostar" class="w-full font-bold py-3 rounded-xl text-lg" style="background-color:#FFD700;color:#000000;" disabled>Apostar Combinada</button>
     </div>
   </form>
   <script>
@@ -112,6 +112,17 @@ include __DIR__ . '/../style/head.php';
       var el = document.getElementById('aposta-' + id);
       el.style.display = checkbox.checked ? 'flex' : 'none';
     }
+    // Desabilita o botão se não houver valor ou nenhum jogo selecionado
+    const valorInput = document.getElementById('valor_combinada');
+    const btnApostar = document.getElementById('btn-apostar');
+    function checkApostaEnabled() {
+      const checkboxes = document.querySelectorAll('input[name="selecionados[]"]:checked');
+      btnApostar.disabled = !valorInput.value || parseFloat(valorInput.value) <= 0 || checkboxes.length === 0;
+    }
+    valorInput.addEventListener('input', checkApostaEnabled);
+    document.querySelectorAll('input[name="selecionados[]"]').forEach(function(checkbox) {
+      checkbox.addEventListener('change', checkApostaEnabled);
+    });
   </script>
 </div>
 <?php
@@ -133,7 +144,7 @@ $historicoApostas = $betModel->history($_SESSION['user_id']);
     </div>
     <div class="flex items-center gap-2">
       <span class="material-icons text-[#616161] text-2xl">cancel</span>
-  <span class="font-semibold text-lg" style="color:#FFD700;">Perda</span>
+  <span class="font-semibold text-lg" style="color:#FFD700;">Derrota</span>
     </div>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -163,7 +174,7 @@ $historicoApostas = $betModel->history($_SESSION['user_id']);
             if ($status == 'ganha') {
               echo 'Vitória (+R$ '.number_format($valorPremio,2,',','.') .')';
             } elseif ($status == 'perdida') {
-              echo 'Perda (-R$ '.number_format($a['valor'],2,',','.') .')';
+              echo 'Derrota (-R$ '.number_format($a['valor'],2,',','.') .')';
             } else {
               echo 'Pendente';
             }

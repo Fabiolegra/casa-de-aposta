@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $premio = $valor * $odd_combinada;
                 $transModel->ganho($_SESSION['user_id'], $premio);
                 $msg = '<div class="text-green-600 mb-2">Parabéns! Você acertou todas e ganhou R$ '.number_format($premio,2,',','.').'. Redirecionando...</div>';
-            <body class="min-h-screen" style="background-color:#000000;">
+            } else {
                 $transModel->perca($_SESSION['user_id'], $valor);
                 $msg = '<div class="text-red-600 mb-2">Você errou uma ou mais apostas. Tente novamente! Redirecionando...</div>';
             }
